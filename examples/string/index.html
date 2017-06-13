@@ -1,0 +1,16 @@
+<html>
+	<head>Hello-Cargo</head>
+	<body>
+		<script type="text/javascript" src="./rust-webassembly-string.js"></script>
+		<script type="text/javascript">
+			Module.addOnInit(function () {
+				var story = "One apon a time";
+				// Execute `cwrap`(https://kripken.github.io/emscripten-site/docs/api_reference/preamble.js.html#cwrap)
+				// This gives us a function that will store the string in memory, and pass that pointer to the binary
+				// Parameters ('rust_fn_name', 'expected_return_type', ['parameter type'])
+				var fix_story = Module.cwrap('fix_story', 'string', ['string']);
+				console.log(fix_story(story)); // Once apon a time
+			});
+		</script>
+	</body>
+</html>
