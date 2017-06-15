@@ -1,15 +1,16 @@
 <html>
 	<head>Hello-Cargo</head>
 	<body>
-		<script type="text/javascript" src="./hello-cargo.js"></script>
+		<script type="text/javascript" src="./web-assembly-number.js"></script>
 		<script type="text/javascript">
 			Module.addOnInit(function () {
-				var story = "One apon a time";
+				var number = 5;
+				var power = 5;
 				// Execute `cwrap`(https://kripken.github.io/emscripten-site/docs/api_reference/preamble.js.html#cwrap)
 				// This gives us a function that will store the string in memory, and pass that pointer to the binary
 				// Parameters ('rust_fn_name', 'expected_return_type', ['parameter type'])
-				var fix_story = Module.cwrap('fix_story', 'string', ['string']);
-				console.log(fix_story(str)); // Once apon a time
+				var math_pow = Module.cwrap('math_pow', 'number', ['number', 'number']);
+				console.log(math_pow(number, power)); // 3125
 			});
 		</script>
 	</body>

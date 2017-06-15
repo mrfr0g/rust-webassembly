@@ -1,4 +1,4 @@
 [root]
-name = "hello-cargo"
+name = "web-assembly-number"
 version = "0.1.0"
 

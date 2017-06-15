@@ -1,23 +1,15 @@
-use std::os::raw::c_char;
-use std::ffi::CStr;
-use std::ffi::CString;
-
 fn main() {
 	// ... This is ignored as far as I can tell
 }
 
-fn my_string_safe(i: *mut c_char) -> String {
-  unsafe {
-      CStr::from_ptr(i).to_string_lossy().into_owned()
-  }
-}
+/**
+ * In this case the JS `number` type is converted to an i32 primitive.
+ * AFAIK it's not a pointer to an i32 primitive, so we can operate on it normally
+ */
 
 #[no_mangle]
-pub fn fix_story(i: *mut c_char) -> *mut c_char {
-	let data = my_string_safe(i);
-	let f = data.replace("one", "once");
+pub fn math_pow(number: i32, power: i32) -> i32 {
+  let result: i32 = number.pow(power as u32); // `pow` accepts u32, so cast the i32
 
-	CString::new(f.as_str())
-		.unwrap()
-		.into_raw()
+  result
 }

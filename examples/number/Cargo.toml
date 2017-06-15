@@ -1,5 +1,5 @@
 [package]
-name = "hello-cargo"
+name = "web-assembly-number"
 version = "0.1.0"
 authors = ["Michael Camden <camden.michael@gmail.com>"]
 
