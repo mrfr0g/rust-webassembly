@@ -135,10 +135,16 @@ In rust, we declare that we expect a raw pointer defined as a `c_char` type. We 
 
 In the .cargo/config file we define a set of exported functions to the compiler via `EXPORT_FUNCTIONS`. *Note:* You must prepend the exported function with an underscore.
 
-#### This example...
+## Examples
 
-I've included this above example in the repo. You should be able to just execute `make` within the directory to build exactly the example and see it in the browser. *Note:* You will need a server to host the released files. I personally use `serve` which can be found over at https://www.npmjs.com/package/serve.
+I've included several examples under the `examples` directory. Just `cd` into one, and run `make` to build the example.
+
+*Note:* You will need a server to host the released files. I personally use `serve` which can be found over at https://www.npmjs.com/package/serve.
 
 ## Todo
 
-- Create number passing example
+[x] Create string -> String example
+[x] Create number -> i32 example
+[ ] Create array -> vec example
+[ ] Create object -> struct example _possible?_
+
