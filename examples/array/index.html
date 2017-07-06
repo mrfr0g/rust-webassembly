@@ -1,15 +1,31 @@
 <html>
-	<head>Hello-Cargo</head>
+	<head>WebAssembly - Array</head>
 	<body>
-		<script type="text/javascript" src="./hello-cargo.js"></script>
+		<script type="text/javascript" src="./rust-webassembly-array.js"></script>
 		<script type="text/javascript">
 			Module.addOnInit(function () {
-				var story = "One apon a time";
-				// Execute `cwrap`(https://kripken.github.io/emscripten-site/docs/api_reference/preamble.js.html#cwrap)
-				// This gives us a function that will store the string in memory, and pass that pointer to the binary
-				// Parameters ('rust_fn_name', 'expected_return_type', ['parameter type'])
-				var fix_story = Module.cwrap('fix_story', 'string', ['string']);
-				console.log(fix_story(str)); // Once apon a time
+				var data = [1, 2, 3];
+
+				// Allocate memory to store the array
+                var ptr = Module._malloc(data.length+1);
+
+                // Actually write the array to memory
+                Module.writeArrayToMemory(data, ptr);
+
+                // Call the rust `mutate_array` method manually
+                Module._mutate_array(ptr, data.length);
+
+                var buffer = [];
+
+                // Now that the array is mutated, get the values back out from memory and push into an array
+                for (var i = 0; i < data.length; i++) {
+                    buffer.push(Module.getValue(ptr + i));
+				}
+
+				// Free the memory
+                Module._free(ptr);
+
+                console.log(buffer); // [ 2, 3, 4 ]
 			});
 		</script>
 	</body>

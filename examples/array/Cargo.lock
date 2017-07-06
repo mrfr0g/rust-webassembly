@@ -1,4 +1,4 @@
 [root]
-name = "hello-cargo"
+name = "rust-webassembly-array"
 version = "0.1.0"
 

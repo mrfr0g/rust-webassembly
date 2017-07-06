@@ -1,23 +1,18 @@
-use std::os::raw::c_char;
-use std::ffi::CStr;
-use std::ffi::CString;
-
 fn main() {
 	// ... This is ignored as far as I can tell
 }
 
-fn my_string_safe(i: *mut c_char) -> String {
-  unsafe {
-      CStr::from_ptr(i).to_string_lossy().into_owned()
-  }
-}
-
 #[no_mangle]
-pub fn fix_story(i: *mut c_char) -> *mut c_char {
-	let data = my_string_safe(i);
-	let f = data.replace("one", "once");
+pub fn mutate_array(data: *mut Vec<i32>, len: usize) {
+	let mut user_data;
 
-	CString::new(f.as_str())
-		.unwrap()
-		.into_raw()
+	unsafe {
+		user_data = Vec::from_raw_parts(data as *mut u8, len, len);
+	}
+
+	for i in 0..len {
+		user_data[i] += 1;
+	}
+
+	std::mem::forget(user_data);
 }
