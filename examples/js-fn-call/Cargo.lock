@@ -1,0 +1,4 @@
+[[package]]
+name = "rust-webassembly-js-fn-call"
+version = "0.1.0"
+

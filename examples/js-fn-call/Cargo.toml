@@ -1,0 +1,6 @@
+[package]
+name = "rust-webassembly-js-fn-call"
+version = "0.1.0"
+authors = ["Michael Camden <camden.michael@gmail.com>"]
+
+[dependencies]
