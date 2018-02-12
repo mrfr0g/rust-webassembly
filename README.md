@@ -50,7 +50,7 @@ hello.html
 
 #### cargo build
 
-Compiling using `cargo build` is a bit more complex. The following examples presumes you have a "helo world" cargo project, i.e, `cargo new hello-world`.
+Compiling using `cargo build` is a bit more complex. The following examples presumes you have a "hello world" cargo project, i.e, `cargo new hello-world`.
 
 ```
 cargo build --release --target wasm32-unknown-emscripten
